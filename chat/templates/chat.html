@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .chat-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fefefe;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  }
+
+  .chat-header {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  form.chat-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  form.chat-form input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+
+  form.chat-form input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  form.chat-form button {
+    padding: 12px 25px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  form.chat-form button:hover {
+    background-color: #0056b3;
+  }
+
+  .logout-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .logout-link a {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .logout-link a:hover {
+    text-decoration: underline;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+  }
+
+  ul.message-list {
+    list-style-type: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-left: 0;
+  }
+
+  ul.message-list li {
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    word-wrap: break-word;
+  }
+
+  ul.message-list li strong {
+    color: #007bff;
+  }
+
+  ul.message-list li small {
+    float: right;
+    color: #999;
+    font-size: 12px;
+    font-style: italic;
+  }
+</style>
+
+<div class="chat-container">
+  <div class="chat-header">Welcome, {{ username }}</div>
+
+  <form class="chat-form" method="POST" action="">
+    <input type="text" name="message" placeholder="Type a message" autocomplete="off" required>
+    <button type="submit">Send</button>
+  </form>
+
+  
+
+  <hr>
+
+  <ul class="message-list">
+    {% for msg in messages %}
+      <li>
+        <strong>{{ msg.sender.username }}</strong>: {{ msg.message }}
+        <small>{{ msg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+      </li>
+    {% else %}
+      <li>No messages yet.</li>
+    {% endfor %}
+  </ul>
+  <div class="logout-link"><a href="/logout">Logout</a></div>
+</div>
+{% endblock %}

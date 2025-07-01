@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .signup-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .signup-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
+  .signup-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+  }
+  .signup-container input[type="text"],
+  .signup-container input[type="email"],
+  .signup-container input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+  }
+  .signup-container input[type="text"]:focus,
+  .signup-container input[type="email"]:focus,
+  .signup-container input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  .signup-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .signup-container button:hover {
+    background-color: #0056b3;
+  }
+  .signup-container .login-link {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+  }
+  .signup-container .login-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .signup-container .login-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form method="POST" action="">
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" required>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" required>
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <div class="login-link">
+    Already have an account? <a href="/login">Login</a>
+  </div>
+</div>
+{% endblock %}
